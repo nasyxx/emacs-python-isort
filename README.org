@@ -1,0 +1,49 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline author:t
+#+options: broken-links:mark c:nil creator:nil d:(not "LOGBOOK") date:t e:t
+#+options: email:nil f:t inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
+#+options: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
+#+title: README
+#+date: <2021-05-12 Wed>
+#+author: Nasy
+#+email: nasyxx@gmail.com
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 28.0.50 (Org mode 9.4.5)
+
+#+begin_src elisp :tangle (expand-file-name "nasy-python-isort.el")
+  ;;; nasy-python-isort.el --- Utility to sort Python imports -*- lexical-binding: t; -*-
+
+  (require 'reformatter)
+
+  (defcustom python-isort-command "isort"
+    "Name of the `isort` executable."
+    :group 'nasy
+    :type 'string)
+
+  (defvar python-isort--base-args '("--quiet" "--atomic")
+    "Base arguments to pass to isort.")
+
+  (defcustom python-isort-extra-args `("--sp" ,(expand-file-name "~/.config/isort.cfg"))
+    "Extra arguments to pass to isort."
+    :group 'nasy
+    :type '(repeat string))
+
+  ;;;###autoload (autoload 'python-isort-buffer "nasy-python-isort" nil t)
+  ;;;###autoload (autoload 'python-isort-region "nasy-python-isort" nil t)
+  ;;;###autoload (autoload 'python-isort-on-save-mode "nasy-python-isort" nil t)
+  (reformatter-define python-isort
+    :program python-isort-command
+    :args (python-isort--make-args beg end)
+    :lighter " isort"
+    :group 'python-isort)
+
+  (defun python-isort--make-args (beg end)
+    "Helper to build the argument list for isort for span BEG to END."
+    (append python-isort--base-args
+            python-isort-extra-args
+            '("-")))
+
+  (provide 'nasy-python-isort)
+  ;;; nasy-python-isort.el ends here
+#+end_src
