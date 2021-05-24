@@ -1,4 +1,4 @@
-;;; nasy-python-isort.el --- Utility to sort Python imports -*- lexical-binding: t; -*-
+;;; python-isort.el --- Utility to sort Python imports -*- lexical-binding: t; -*-
 
 (require 'reformatter)
 
@@ -27,8 +27,8 @@
 (defun python-isort--make-args (beg end)
   "Helper to build the argument list for isort for span BEG to END."
   (append python-isort--base-args
-          python-isort-extra-args
-          '("-")))
+    python-isort-extra-args
+    '("-")))
 
-(provide 'nasy-python-isort)
-;;; nasy-python-isort.el ends here
+(provide 'python-isort)
+;;; python-isort.el ends here
