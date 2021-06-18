@@ -11,7 +11,7 @@
 #+exclude_tags: noexport
 #+creator: Emacs 28.0.50 (Org mode 9.4.5)
 
-#+begin_src elisp :tangle (expand-file-name "python-isort.el")
+#+begin_src emacs-lisp :tangle (expand-file-name "python-isort.el")
   ;;; python-isort.el --- Utility to sort Python imports -*- lexical-binding: t; -*-
 
   (require 'reformatter)
