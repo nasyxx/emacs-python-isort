@@ -15,9 +15,9 @@
   :group 'nasy
   :type '(repeat string))
 
-;;;###autoload (autoload 'python-isort-buffer "nasy-python-isort" nil t)
-;;;###autoload (autoload 'python-isort-region "nasy-python-isort" nil t)
-;;;###autoload (autoload 'python-isort-on-save-mode "nasy-python-isort" nil t)
+;;;###autoload (autoload 'python-isort-buffer "python-isort" nil t)
+;;;###autoload (autoload 'python-isort-region "python-isort" nil t)
+;;;###autoload (autoload 'python-isort-on-save-mode "python-isort" nil t)
 (reformatter-define python-isort
   :program python-isort-command
   :args (python-isort--make-args beg end)
@@ -27,8 +27,8 @@
 (defun python-isort--make-args (beg end)
   "Helper to build the argument list for isort for span BEG to END."
   (append python-isort--base-args
-    python-isort-extra-args
-    '("-")))
+          python-isort-extra-args
+          '("-")))
 
 (provide 'python-isort)
 ;;; python-isort.el ends here
